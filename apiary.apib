@@ -11,23 +11,23 @@ There is some data that isn't available in the SOAP XML. So will need to build a
 
 The apps when performing the API calls will get the data in JSON of the above two combined data.
 
-##Hostage
+## Hostage
 The client will provide a hostage for the server with your requirements (windows/linux/etc).
 
-##HTTPS / SSL
+## HTTPS / SSL
 It needs to supports SSL. The client will provide a certificate with your requirements.
 
-##JSON & JSONP Response Format
+## JSON & JSONP Response Format
 All API calls must be REST and support a single format: JSON. Add a callback parameter to your request and the response will be encapsulated in the value you specified.
 
-##Allowed HTTPs requests:
+## Allowed HTTPs requests:
 
 - `POST` - To create a resource
 - `PUT` - To  update a resource
 - `GET` - Get a resource or list of resources
 - `DELETE` - To delete resource
 
-##Server Responses
+## Server Responses
 
 - 200 `OK` - the request was successful (some API calls may return 201 instead).
 - 201 `Created` - the request was successful and a resource was created.
@@ -39,11 +39,11 @@ All API calls must be REST and support a single format: JSON. Add a callback par
 - 405 `Method Not Allowed` - requested method is not supported for resource.
 - 429 `Too Many Requests` - exceeded KirkeWeb API limits. Pause requests, wait up to one minute, and try again.
 
-##Encoding
+## Encoding
 
 All endpoints accept and use UTF-8 encoding
 
-##Dates
+## Dates
 
 All dates will be in ISO-8601 format in UTC timezone: `yyyy-MM-dd'T'HH:mm:ss'Z'`
 
