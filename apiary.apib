@@ -90,8 +90,8 @@ Register a user with all necessary registration data. Creates a user object with
     + Attributes
         + username: youremail@company.com (string, required) - the user's username, normally it is an email.
         + password: YourPassword (string, required) - the user's password.
-        + firstname: John (string, required) - the user's real first name.
-        + lastname: Smith (string, required) - the user's real last name.
+        + firstName: John (string, required) - the user's real first name.
+        + lastName: Smith (string, required) - the user's real last name.
         + gender: male, female, other (enum, required) - the user's gender (male, female, other)
         + birthCountry: France (string, required) - the user's birth country.
         + postcode: B7 4BB (string, required) - the user's postcode.
@@ -589,6 +589,8 @@ Return all courses
 
 ## user (object)
 + userId: 147483647 (number, required) - ID of the user in the form of an long
++ firstName: John (string, required) - the user's real first name.
++ lastName: Smith (string, required) - the user's real last name.
 + isUpgraded: false (boolean, required) - determine if the user is a Pro user
 + isGPSEnabled: true (boolean, required) - determine if the user has GPS enabled
 + isPlayForFunEnabled: true (boolean, required) - determine if the user has Play4Fun enabled
