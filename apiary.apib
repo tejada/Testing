@@ -193,8 +193,9 @@ Retrieve a trophy for a user base on bets they've won.
             Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
 
 + Response 200 (application/json)
-    + Attributes (trophy)
+    + Attributes
         + success: true (boolean, required)
+        + trophy (trophy, required) - Trophy object
 
 + Response 403 (application/json)
     + Attributes (error)
@@ -618,6 +619,7 @@ Return all courses
 + updatedAt: `2015-11-30T09:35:10.652Z` (string, required)
 + raceId: 147483647 (number, required) - ID of the race in the form of an long
 + horseId: 147483647 (number, required) - ID of the horse in the form of an long
++ userId: 147483647 (number, required) - ID of the user in the form of an long
 + results: null (object)
 
 ## course (object)
