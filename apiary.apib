@@ -146,8 +146,9 @@ Allow the ability to edit fields on a user. Notably if they have upgraded to pro
             + isUpgraded: true (boolean, required) - determine if the user is a Pro user
 
 + Response 200 (application/json)
-    + Attributes (user)
+    + Attributes
         + success: true (boolean, required)
+        + user (user, required) - User object
 
 + Response 403 (application/json)
     + Attributes
@@ -167,8 +168,9 @@ Retrieve relevant information of the user like isUpgraded or guineas.
             Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
 
 + Response 200 (application/json)
-    + Attributes (user)
+    + Attributes
         + success: true (boolean, required)
+        + user (user, required) - User object
 
 + Response 403 (application/json)
     + Attributes (error)
