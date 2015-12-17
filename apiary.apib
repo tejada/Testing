@@ -59,7 +59,7 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
         + sponsorName: `SkyBet` (string, required)
         + createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
         + updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
-        + imageUrl: `http://www.url.co.uk/sponsor.jpg` (string, required)
+        + imageUrl: `http://www.url.co.uk/image.jpg` (string, required)
         + success: true (boolean, required)
         
 + Response 403 (application/json)
@@ -613,7 +613,7 @@ Return wpredictor by identifier
 + createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
 + updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
 + courseDate: `2015-11-05` (string, required) - fixtureDate on XML
-+ courseImageUrl: http://www.url.co.uk/sponsor.jpg (string, required) - Comes from the CMS
++ courseImageUrl: http://www.url.co.uk/image.jpg (string, required) - Comes from the CMS
 + courseDescription: `course description` (string) - Comes from the CMS
 + stage: Overnight (string)
 + evening: true (boolean)
@@ -655,6 +655,7 @@ Return wpredictor by identifier
     + Cheekpieces: true (boolean)
     + General: `z` (string)
 + weight: 166 (number)
++ silk (silk)
 
 ## trainer (object)
 + trainerName: `Seamus Mullins` (string, required) - ID of the trainer in the form of a string
@@ -672,3 +673,8 @@ Return wpredictor by identifier
     + raceId: 147483647 (number)
 + horses (array[object])
     + horseId: 147483647 (number)
+
+## silk (object)
++ silkId: 147483647 (number, required) - ID of the silk in the form of an long
++ silkColor `red` (string, required) - Comes from the CMS
++ silkImageUrl: http://www.url.co.uk/image.jpg (string, required) - Comes from the CMS
