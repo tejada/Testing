@@ -112,6 +112,43 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 + evening: true (boolean)
 + bankHoliday: true (boolean)
 + meetingName: `November Meeting, 2015` (string)
++ races (array[race], required)
+
+
+## race (object)
++ ageConditions (object)
+    + age1: `3` (string)
+    + age2: `+` (string)
++ awt: `A` (string)
++ distance (object)
+    + furlongs: 3 (number)
+    + yards: 0 (number)
++ handicapType: `H` (string)
++ horses (array[horse], required)
++ date: `2015-11-30T09:35:10.652Z` (string, required)
++ raceId: 147483647 (number, required) - ID of the race in the form of an long (RaceNumber)
++ name: `THE HAYGAIN HAY STEAMERS CLEAN HEALTHY HAY MARES' HANDICAP HURDLE RACE (CLASS 5)` (string, required)
++ type: `J` (string, required) - Race type: Jump, Flat, etc
++ value: 5000.00 (number, required) - Race value in the form of a float
+
+## horse (object)
++ age: 6 (number) - Age of the horse in the form of a int
++ horseId: 147483647 (number, required) - ID of the horse in the form of an long
++ name: `Glenarm` (string, required)
++ description: `horse description` (string) - Comes from the CMS
++ colours: `EMERALD GREEN, WHITE sleeves, quartered cap.` (string)
++ draw: 0 (number)
++ form: `35-0055` (string)
++ jockey (jockey)
++ officialRating: 70 (number) - Comes from the CMS
++ owner (owner)
++ saddleCloth: 1 (number)
++ trainer (trainer)
++ wearing (object)
+    + Cheekpieces: true (boolean)
+    + General: `z` (string)
++ weight: 166 (number)
++ silk (silk)
 
 ## trainer (object)
 + trainerName: `Seamus Mullins` (string, required) - ID of the trainer in the form of a string
@@ -122,13 +159,6 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 ## jockey (object)
 + jockeyAllowance: 0 (number)
 + jockeyName: `Andrew Thornton` (string, required) - ID of the jockey in the form of a string
-
-## wpredictor (object)
-+ wpredictorId: 147483647 (number, required) - ID of the wpredictor in the form of an long
-+ races (array[object]) - Comes from the CMS
-    + raceId: 147483647 (number) - Comes from the CMS
-+ horses (array[object]) - Comes from the CMS
-    + horseId: 147483647 (number) - Comes from the CMS
 
 ## silk (object)
 + silkId: 147483647 (number, required) - ID of the silk in the form of an long
