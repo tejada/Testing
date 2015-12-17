@@ -69,3 +69,105 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 + error (object) - Error object
     + errorCode: 403 (number)
     + errorMessage: `Your session has expired, please sign-in and try again.` (string)
+
+## user (object)
++ userId: 147483647 (number, required) - ID of the user in the form of an long
++ firstName: John (string, required) - the user's real first name.
++ lastName: Smith (string, required) - the user's real last name.
++ isProFilterUpgraded: false (boolean, required) - determine if the user is a Pro filter user
++ isSaveFilterUpgraded: false (boolean, required) - determine if the user is a Pro save filter user
++ isGPSEnabled: true (boolean, required) - determine if the user has GPS enabled
++ isPlayForFunEnabled: true (boolean, required) - determine if the user has Play4Fun enabled
++ isPushNotificationsEnabled: true (boolean, required) - determine if the user has push notifications enabled
++ wins: 0 (number, required) - number of wins
++ loses: 0 (number, required) - number of loses
++ draws: 0 (number, required) - number of draws
++ guineas: 50 (number, required) - number of guineas (virtual money to bet for fun)
+
+## trophy (object)
++ trophyId: 147483647 (number, required) - ID of the trophy in the form of an long
++ name: `BestJumper` (string, required)
++ type: trophy, cup, rosette (enum, required) - 1st Trophy, 2nd Cup, 3rd Rosette
++ bet (bet) - Bet object
+
+## bet (object)
++ betId: 147483647 (number, required) - ID of the bet in the form of an long
++ guineas: 12 (number, required) - Number of guineas to bet in the form of an long
++ createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
++ updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
++ raceId: 147483647 (number, required) - ID of the race in the form of an long
++ horseId: 147483647 (number, required) - ID of the horse in the form of an long
++ userId: 147483647 (number, required) - ID of the user in the form of an long
++ results: null (object)
+
+## course (object)
++ courseId: 147483647 (number, required) - ID (courseCode) of the course in the form of an long
++ courseName: TOWCESTER (string, required)
++ createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
++ updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
++ date: `2015-11-05` (string, required) - fixtureDate on XML
++ imageUrl: `http://www.url.co.uk/image.jpg` (string, required) - Comes from the CMS
++ description: `course description` (string) - Comes from the CMS
++ stage: Overnight (string)
++ evening: true (boolean)
++ bankHoliday: true (boolean)
++ meetingName: `November Meeting, 2015` (string)
++ races (array[race], required)
++ wpredictor (wpredictor) - Comes from the CMS
+
+## race (object)
++ ageConditions (object)
+    + age1: `3` (string)
+    + age2: `+` (string)
++ awt: `A` (string)
++ distance (object)
+    + furlongs: 3 (number)
+    + yards: 0 (number)
++ handicapType: `H` (string)
++ horses (array[horse], required)
++ date: `2015-11-30T09:35:10.652Z` (string, required)
++ raceId: 147483647 (number, required) - ID of the race in the form of an long (RaceNumber)
++ name: `THE HAYGAIN HAY STEAMERS CLEAN HEALTHY HAY MARES' HANDICAP HURDLE RACE (CLASS 5)` (string, required)
++ type: `J` (string, required) - Race type: Jump, Flat, etc
++ value: 5000.00 (number, required) - Race value in the form of a float
+
+## horse (object)
++ age: 6 (number) - Age of the horse in the form of a int
++ horseId: 147483647 (number, required) - ID of the horse in the form of an long
++ name: `Glenarm` (string, required)
++ description: `horse description` (string) - Comes from the CMS
++ colours: `EMERALD GREEN, WHITE sleeves, quartered cap.` (string)
++ draw: 0 (number)
++ form: `35-0055` (string)
++ jockey (jockey)
++ officialRating: 70 (number) - Comes from the CMS
++ owner (owner)
++ saddleCloth: 1 (number)
++ trainer (trainer)
++ wearing (object)
+    + Cheekpieces: true (boolean)
+    + General: `z` (string)
++ weight: 166 (number)
++ silk (silk)
+
+## trainer (object)
++ trainerName: `Seamus Mullins` (string, required) - ID of the trainer in the form of a string
+
+## owner (object)
++ ownerName: `The Up The Glens Partnership` (string, required) - ID of the owner in the form of a string
+
+## jockey (object)
++ jockeyAllowance: 0 (number)
++ jockeyName: `Andrew Thornton` (string, required) - ID of the jockey in the form of a string
+
+## wpredictor (object)
++ wpredictorId: 147483647 (number, required) - ID of the wpredictor in the form of an long
++ races (array[object]) - Comes from the CMS
+    + raceId: 147483647 (number) - Comes from the CMS
++ horses (array[object]) - Comes from the CMS
+    + horseId: 147483647 (number) - Comes from the CMS
+
+## silk (object)
++ silkId: 147483647 (number, required) - ID of the silk in the form of an long
++ color `red` (string, required) - Comes from the CMS
++ imageUrl: `http://www.url.co.uk/image.jpg` (string, required) - Comes from the CMS
