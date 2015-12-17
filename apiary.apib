@@ -97,6 +97,10 @@ Register a user with all necessary registration data. Creates a user object with
         + postcode: B7 4BB (string, required) - the user's postcode.
         + favouriteCourse: courseId (number, required) - the user's favourite course.
         + favouriteTypeOfRace: flat, jump (enum, required) - the user's favourite type of race (flat, jump)
+        + betOnSport: true (boolean, required) - demographic data
+        + attendFixtures: true (boolean, required) - demographic data
+        + attendFixturesRecently: true (boolean, required) - demographic data
+        + receiveOffers: true (boolean, required) - newsletter option
 
 + Response 200 (application/json)
     + Attributes
@@ -316,13 +320,13 @@ Get list of bets (fun element - not real betting)
 + Response 403 (application/json)
     + Attributes (error)
 
-# Group Fixtures
-#GET /fixtures/{fixtureId}
+# Group Courses
+#GET /courses/{courseId}
 
-Return fixture by identifier
+Return course by identifier
 
 + Parameters
-    + fixtureId (number) - ID of the Fixture in the form of an long
+    + courseId (number) - ID of the Course in the form of an long
 
 + Request (application/json)
 
@@ -331,17 +335,17 @@ Return fixture by identifier
             Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
     
 + Response 200 (application/json)
-    + Attributes (fixture)
+    + Attributes (course)
         + success: true (boolean, required)
     
 + Response 403 (application/json)
     + Attributes (error)
 
-#GET /fixtures/{lastSyncTimestamp}
+#GET /courses/{lastSyncTimestamp}
 
-Returns all fixtures (updated or created) from the lastSyncTimestamp stacked in pages, so it will return a fix ammount of results, let's say 20 per request. If there are more fixtures to return it will provide the `nextSyncUrl` url for it, otherwise it would be empty.
+Returns all courses (updated or created) from the lastSyncTimestamp stacked in pages, so it will return a fix ammount of results, let's say 20 per request. If there are more courses to return it will provide the `nextSyncUrl` url for it, otherwise it would be empty.
 
-To return all fixtures for a bundle database purpose we will send `lastSyncTimestamp` empty and it would return all the fixtures from the oldest one to the newest.
+To return all courses for a bundle database purpose we will send `lastSyncTimestamp` empty and it would return all the courses from the oldest one to the newest.
 
 + Parameters
     + lastSyncTimestamp (string)
@@ -354,47 +358,10 @@ To return all fixtures for a bundle database purpose we will send `lastSyncTimes
 
 + Response 200 (application/json)
     + Attributes
-        + fixtures (array[fixture], required)
-        + nextSyncUrl: `/fixtures/2015-11-30T09:35:10.652Z` (string, required)
+        + courses (array[course], required)
+        + nextSyncUrl: `/courses/2015-11-30T09:35:10.652Z` (string, required)
         + success: true (boolean, required)
         
-+ Response 403 (application/json)
-    + Attributes (error)
-
-# Group Horses
-#GET /horses/{horseId}
-Return horse by identifier
-
-+ Parameters
-    + horseId (number) - ID of the Horse in the form of an long
-    
-+ Request (application/json)
-
-    + Headers
-
-            Token: "12308A08Q2349UNSDAF78q234-34a"
-
-+ Response 200 (application/json)
-    + Attributes (horse)
-        + success: true (boolean, required)
-    
-+ Response 403 (application/json)
-    + Attributes (error)
-
-#GET /horses
-Return all horses
-
-+ Request (application/json)
-
-    + Headers
-
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
-
-+ Response 200 (application/json)
-    + Attributes
-        + horses (array[horse], required)
-        + success: true (boolean, required)
-
 + Response 403 (application/json)
     + Attributes (error)
 
@@ -430,6 +397,43 @@ Return all races
 + Response 200 (application/json)
     + Attributes
         + races (array[race], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Horses
+#GET /horses/{horseId}
+Return horse by identifier
+
++ Parameters
+    + horseId (number) - ID of the Horse in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "12308A08Q2349UNSDAF78q234-34a"
+
++ Response 200 (application/json)
+    + Attributes (horse)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /horses
+Return all horses
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + horses (array[horse], required)
         + success: true (boolean, required)
 
 + Response 403 (application/json)
@@ -546,12 +550,12 @@ Return all trainers
 + Response 403 (application/json)
     + Attributes (error)
 
-# Group Courses
-#GET /courses/{courseId}
-Return course by identifier
+# Group Weatherbys Predictor
+#GET /wpredictor/{wpredictorId}
+Return wpredictor by identifier
 
 + Parameters
-    + courseId (number) - ID of the Course in the form of an long
+    + wpredictorId (number) - ID of the wpredictor in the form of an long
     
 + Request (application/json)
 
@@ -560,24 +564,7 @@ Return course by identifier
             Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
 
 + Response 200 (application/json)
-    + Attributes (course)
-        + success: true (boolean, required)
-
-+ Response 403 (application/json)
-    + Attributes (error)
-
-#GET /courses
-Return all courses
-
-+ Request (application/json)
-
-    + Headers
-
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
-
-+ Response 200 (application/json)
-    + Attributes
-        + courses (array[course], required)
+    + Attributes (wpredictor)
         + success: true (boolean, required)
 
 + Response 403 (application/json)
@@ -608,8 +595,6 @@ Return all courses
 + trophyId: 147483647 (number, required) - ID of the trophy in the form of an long
 + trophyName: `BestJumper` (string, required)
 + trophyType: trophy, cup, rosette (enum, required) - 1st Trophy, 2nd Cup, 3rd Rosette
-+ trophyImageUrl: `http://www.company/asset/trophy1.jpg` (string, required)
-+ trophyDate: `2015-11-30T09:35:10.652Z` (string, required)
 + bet (bet) - Bet object
 
 ## bet (object)
@@ -623,61 +608,68 @@ Return all courses
 + results: null (object)
 
 ## course (object)
-+ courseId: 147483647 (number, required) - ID of the course in the form of an long
-+ courseCode: 52 (number)
++ courseId: 147483647 (number, required) - ID (courseCode) of the course in the form of an long
 + courseName: TOWCESTER (string, required)
-+ fixtureId: 147483647 (number, required) - ID of the Fixture in the form of an long
-
-## horse (object)
-+ age: 6 (number) - Age of the horse in the form of a int
-+ horseId: 147483647 (number, required) - ID of the horse in the form of an long
-+ horseName: `Glenarm` (string, required)
-+ colours: `EMERALD GREEN, WHITE sleeves, quartered cap.` (string)
-+ draw: 0 (number)
-+ form: `4/0454-` (string)
-+ jockey (jockey)
-+ owner (owner)
-+ saddleCloth: 1 (number)
-+ trainer (trainer)
-+ wearing (object)
-    + Cheekpieces: `Y` (string)
-    + General: null (string)
-+ weight: 166 (number)
-+ raceIds (array[number], required)
++ createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
++ updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
++ courseDate: `2015-11-05` (string, required) - fixtureDate on XML
++ stage: Overnight (string)
++ evening: true (boolean)
++ bankHoliday: true (boolean)
++ meetingName: `November Meeting, 2015` (string)
++ races (array[race], required)
++ wpredictor (wpredictor) - Comes from the CMS
++ courseImageUrl: http://www.url.co.uk/sponsor.jpg (string, required) - Comes from the CMS
 
 ## race (object)
 + ageConditions (object)
     + age1: `3` (string)
     + age2: `+` (string)
++ awt: `A` (string)
++ distance (object)
+    + furlongs: 3 (number)
+    + yards: 0 (number)
 + handicapType: `H` (string)
 + horses (array[horse], required)
 + racedAt: `2015-11-30T09:35:10.652Z` (string, required)
-+ raceId: 147483647 (number, required) - ID of the race in the form of an long
++ raceId: 147483647 (number, required) - ID of the race in the form of an long (RaceNumber)
 + raceName: `THE HAYGAIN HAY STEAMERS CLEAN HEALTHY HAY MARES' HANDICAP HURDLE RACE (CLASS 5)` (string, required)
-+ raceNumber: 147483647 (number) - number of the race in the form of an long
 + raceType: J (string, required) - Race type: Jump, Flat, etc
 + value: 5000.00 (number, required) - Race value in the form of a float
-+ fixtureId: 147483647 (number, required) - ID of the Fixture in the form of an long
++ raceDescription: `race description` (string) - Comes from the CMS
++ raceImageUrl: http://www.url.co.uk/sponsor.jpg (string, required) - Comes from the CMS
+
+## horse (object)
++ age: 6 (number) - Age of the horse in the form of a int
++ horseId: 147483647 (number, required) - ID of the horse in the form of an long
++ horseName: `Glenarm` (string, required)
++ horseDescription: `horse description` (string) - Comes from the CMS
++ colours: `EMERALD GREEN, WHITE sleeves, quartered cap.` (string)
++ draw: 0 (number)
++ form: `35-0055` (string)
++ jockey (jockey)
++ officialRating: 70 (number) - Comes from the CMS
++ owner (owner)
++ saddleCloth: 1 (number)
++ trainer (trainer)
++ wearing (object)
+    + Cheekpieces: true (boolean)
+    + General: null (string)
++ weight: 166 (number)
 
 ## trainer (object)
-+ trainerId: 147483647 (number, required) - ID of the trainer in the form of an long
-+ trainerName: `Seamus Mullins` (string, required)
++ trainerName: `Seamus Mullins` (string, required) - ID of the trainer in the form of a string
 
 ## owner (object)
-+ ownerId: 147483647 (number, required) - ID of the owner in the form of an long
-+ ownerName: `The Up The Glens Partnership` (string, required)    
++ ownerName: `The Up The Glens Partnership` (string, required) - ID of the owner in the form of a string
 
 ## jockey (object)
 + jockeyAllowance: 0 (number)
-+ jockeyId: 147483647 (number, required) - ID of the jockey in the form of an long
-+ jockeyName: `Andrew Thornton` (string, required)
++ jockeyName: `Andrew Thornton` (string, required) - ID of the jockey in the form of a string
 
-## fixture (object)
-+ fixtureId: 147483647 (number, required) - ID of the fixture in the form of an long
-+ createdAt: `2015-11-30T09:35:10.652Z` (string, required)
-+ updatedAt: `2015-11-30T09:35:10.652Z` (string, required)
-+ fixtureDate: `2015-11-05` (string, required)
-+ stage: Overnight (string)
-+ meetingName: `November Meeting, 2015` (string)
-+ course (course)
-+ races (array[race], required)
+## wpredictor (object)
++ wpredictorId: 147483647 (number, required) - ID of the wpredictor in the form of an long
++ races (array[object])
+    + raceId: 147483647 (number)
++ horses (array[object])
+    + horseId: 147483647 (number)
