@@ -62,6 +62,511 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 + Response 403 (application/json)
     + Attributes (error)
 
+# Group Users
+#POST /users/login
+Login a user.
+
++ Request (application/json)
+    + Attributes
+        + username: `youremail@company.com` (string, required) - the user's username, normally it is an email.
+        + password: `YourPassword` (string, required) - the user's password.
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s` (string, required) - the token to requests API it will be added in the header of every API call.
+        + success: true (boolean, required)
+        + user (user, required) - User object
+        
++ Response 403 (application/json)
+    + Attributes (error)
+
+#POST /users/register
+Register a user with all necessary registration data. Creates a user object with associated guineas for gamification element.
+
++ Request (application/json)
+    + Attributes
+        + username: `youremail@company.com` (string, required) - the user's username, normally it is an email.
+        + password: `YourPassword` (string, required) - the user's password.
+        + firstName: `John` (string, required) - the user's real first name.
+        + lastName: `Smith` (string, required) - the user's real last name.
+        + gender: male, female, other (enum, required) - the user's gender (male, female, other)
+        + birthCountry: `France` (string, required) - the user's birth country.
+        + postcode: B7 4BB (string, required) - the user's postcode.
+        + favouriteCourse: courseId (number, required) - the user's favourite course.
+        + favouriteTypeOfRace: flat, jump (enum, required) - the user's favourite type of race (flat, jump)
+        + betOnSport: true (boolean, required) - demographic data
+        + attendFixtures: true (boolean, required) - demographic data
+        + attendFixturesRecently: true (boolean, required) - demographic data
+        + receiveOffers: true (boolean, required) - newsletter option
+
++ Response 200 (application/json)
+    + Attributes
+        + token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s` (string, required) - the token to requests API it will be added in the header of every API call.
+        + success: true (boolean, required)
+        + user (user, required) - User object
+
++ Response 403 (application/json)
+    + Attributes (error)
+        
+
+#POST /users/forgotten_password
+
+Send email with a link to update password.
+
++ Request (application/json)
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+    
+    + Attributes
+        + username: youremail@company.com (string, required) - the user's username, normally it is an email.
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# /users/{userId}
+This resource represents one particular user identified by its *userId*.
+
++ Parameters
+    + userId (number, required) - ID of the user in the form of an long
+
+##PATCH
+Allow the ability to edit fields on a user. Notably if they have upgraded to pro or not.
+
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
+    + Attributes
+            + isUpgraded: true (boolean, required) - determine if the user is a Pro user
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+        + user (user, required) - User object
+
++ Response 403 (application/json)
+    + Attributes
+        + success: false (boolean, required)
+        + error (object) - Error object
+            + errorCode: 403 (number)
+            + errorMessage: `Your session has expired, please sign-in and try again.` (string)
+
+##GET
+Retrieve relevant information of the user like isUpgraded or guineas.
+
+    
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+        + user (user, required) - User object
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Trophies
+
+the table `Trophies` is really a query between your bets and the race results with a criteria
+
+#GET /trophies/{trophyId}
+
+Retrieve a trophy for a user base on bets they've won.
+
++ Parameters
+    + trophyId (number, required) - ID of the trophy in the form of an long
+    
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+        + trophy (trophy, required) - Trophy object
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /trophies
+
+Retrieve list of trophies for a user base on bets they've won.
+    
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + trophies (array[trophy], required)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Bets
+
+'Bet' refers to the fun element of the app to place bets to win 'guineas' and it not real betting.
+
+Put, patch, delete to require betId
+
+#POST /bets
+
+Place bet (fun element - not real betting)
+
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
+    + Attributes
+        + bets (array, required)
+            + (object)
+                + raceId: 147483647 (number, required) - ID of the race in the form of an long
+                + horseId: 147483647 (number, required) - ID of the horse in the form of an long
+                + guineas: 12 (number, required) - Number of guineas to bet in the form of an long
+
++ Response 200 (application/json)
+    + Attributes
+        + bets (array[bet], required)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes
+        + success: false (boolean, required)
+        + error (object) - Error object
+            + errorCode: 403 (number)
+            + errorMessage: `Your session has expired, please sign-in and try again.` (string)
+
+# /bets/{betId}
+This resource represents one particular bet identified by its *betId*.
+
++ Parameters
+    + betId (required, number) - ID of the bet in the form of an long
+
+##PATCH
+Update bet (fun element - not real betting)
+
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
+    + Attributes
+        + horseId: 147483647 (number, required) - ID of the horse in the form of an long
+        + success: false (boolean, required)
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes
+        + success: false (boolean, required)
+        + error (object) - Error object
+            + errorCode: 403 (number)
+            + errorMessage: `Your session has expired, please sign-in and try again.` (string)
+
+##DELETE
+Delete bet (fun element - not real betting)
+
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+##GET
+Get list of bets (fun element - not real betting)
+
++ Request (application/json)
+        
+    + Headers
+        
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + bets (array[bet], required)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Courses
+#GET /courses/{courseId}
+
+Return course by identifier
+
++ Parameters
+    + courseId (number) - ID of the Course in the form of an long
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+    
++ Response 200 (application/json)
+    + Attributes (course)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /courses/{lastSyncTimestamp}
+
+Returns all courses (updated or created) from the lastSyncTimestamp stacked in pages, so it will return a fix ammount of results, let's say 20 per request. If there are more courses to return it will provide the `nextSyncUrl` url for it, otherwise it would be empty.
+
+To return all courses for a bundle database purpose we will send `lastSyncTimestamp` empty and it would return all the courses from the oldest one to the newest.
+
++ Parameters
+    + lastSyncTimestamp (string)
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + courses (array[course], required)
+        + nextSyncUrl: `/courses/2015-11-30T09:35:10.652Z` (string, required)
+        + success: true (boolean, required)
+        
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Races
+#GET /races/{raceId}
+Return race by identifier
+
++ Parameters
+    + raceId (number) - ID of the Race in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (race)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /races
+Return all races
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + races (array[race], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Horses
+#GET /horses/{horseId}
+Return horse by identifier
+
++ Parameters
+    + horseId (number) - ID of the Horse in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (horse)
+        + success: true (boolean, required)
+    
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /horses
+Return all horses
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + horses (array[horse], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Jockeys
+#GET /jockeys/{jockeyId}
+Return jockey by identifier
+
++ Parameters
+    + jockeyId (number) - ID of the Jockey in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (jockey)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /jockeys
+Return all jockeys
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + jockeys (array[jockey], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Owners
+#GET /owners/{ownerId}
+Return owner by identifier
+
++ Parameters
+    + ownerId (number) - ID of the Owner in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (owner)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /owners
+Return all owners
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + owners (array[owner], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Trainers
+#GET /trainers/{trainerId}
+Return trainer by identifier
+
++ Parameters
+    + trainerId (number) - ID of the Trainer in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (trainer)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+#GET /trainers
+Return all trainers
+
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes
+        + trainers (array[trainer], required)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
+# Group Weatherbys Predictor
+#GET /wpredictor/{wpredictorId}
+Return wpredictor by identifier
+
++ Parameters
+    + wpredictorId (number) - ID of the wpredictor in the form of an long
+    
++ Request (application/json)
+
+    + Headers
+
+            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+
++ Response 200 (application/json)
+    + Attributes (wpredictor)
+        + success: true (boolean, required)
+
++ Response 403 (application/json)
+    + Attributes (error)
+
 # Data Structures
 
 ## error (object)
@@ -72,8 +577,8 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 
 ## user (object)
 + userId: 147483647 (number, required) - ID of the user in the form of an long
-+ firstName: `John` (string, required) - the user's real first name.
-+ lastName: `Smith` (string, required) - the user's real last name.
++ firstName: John (string, required) - the user's real first name.
++ lastName: Smith (string, required) - the user's real last name.
 + isProFilterUpgraded: false (boolean, required) - determine if the user is a Pro filter user
 + isSaveFilterUpgraded: false (boolean, required) - determine if the user is a Pro save filter user
 + isGPSEnabled: true (boolean, required) - determine if the user has GPS enabled
@@ -162,6 +667,10 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 
 ## wpredictor (object)
 + wpredictorId: 147483647 (number, required) - ID of the wpredictor in the form of an long
++ races (array[object])
+    + raceId: 147483647 (number) - Comes from the CMS
++ horses (array[object])
+    + horseId: 147483647 (number) - Comes from the CMS
 
 ## silk (object)
 + silkId: 147483647 (number, required) - ID of the silk in the form of an long
