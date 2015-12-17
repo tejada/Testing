@@ -56,10 +56,10 @@ To return the URL of an image (or a base64 encoded image) of the sponsor to use 
 + Response 200 (application/json)
     + Attributes
         + sponsorId: 147483647 (number, required) - ID of the sponsor in the form of an long
-        + sponsorName: SkyBet (string, required)
-        + createdAt: `2015-11-30T09:35:10.652Z` (string, required)
-        + updatedAt: `2015-11-30T09:35:10.652Z` (string, required)
-        + imageUrl: http://www.url.co.uk/sponsor.jpg (string, required)
+        + sponsorName: `SkyBet` (string, required)
+        + createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
+        + updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
+        + imageUrl: `http://www.url.co.uk/sponsor.jpg` (string, required)
         + success: true (boolean, required)
         
 + Response 403 (application/json)
@@ -71,8 +71,8 @@ Login a user.
 
 + Request (application/json)
     + Attributes
-        + username: youremail@company.com (string, required) - the user's username, normally it is an email.
-        + password: YourPassword (string, required) - the user's password.
+        + username: `youremail@company.com` (string, required) - the user's username, normally it is an email.
+        + password: `YourPassword` (string, required) - the user's password.
 
 + Response 200 (application/json)
     + Attributes
@@ -88,12 +88,12 @@ Register a user with all necessary registration data. Creates a user object with
 
 + Request (application/json)
     + Attributes
-        + username: youremail@company.com (string, required) - the user's username, normally it is an email.
-        + password: YourPassword (string, required) - the user's password.
-        + firstName: John (string, required) - the user's real first name.
-        + lastName: Smith (string, required) - the user's real last name.
+        + username: `youremail@company.com` (string, required) - the user's username, normally it is an email.
+        + password: `YourPassword` (string, required) - the user's password.
+        + firstName: `John` (string, required) - the user's real first name.
+        + lastName: `Smith` (string, required) - the user's real last name.
         + gender: male, female, other (enum, required) - the user's gender (male, female, other)
-        + birthCountry: France (string, required) - the user's birth country.
+        + birthCountry: `France` (string, required) - the user's birth country.
         + postcode: B7 4BB (string, required) - the user's postcode.
         + favouriteCourse: courseId (number, required) - the user's favourite course.
         + favouriteTypeOfRace: flat, jump (enum, required) - the user's favourite type of race (flat, jump)
@@ -144,7 +144,7 @@ Allow the ability to edit fields on a user. Notably if they have upgraded to pro
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
     + Attributes
             + isUpgraded: true (boolean, required) - determine if the user is a Pro user
@@ -169,7 +169,7 @@ Retrieve relevant information of the user like isUpgraded or guineas.
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -194,7 +194,7 @@ Retrieve a trophy for a user base on bets they've won.
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -212,7 +212,7 @@ Retrieve list of trophies for a user base on bets they've won.
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -236,7 +236,7 @@ Place bet (fun element - not real betting)
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
     + Attributes
         + bets (array, required)
@@ -270,7 +270,7 @@ Update bet (fun element - not real betting)
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
     + Attributes
         + horseId: 147483647 (number, required) - ID of the horse in the form of an long
@@ -310,7 +310,7 @@ Get list of bets (fun element - not real betting)
         
     + Headers
         
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -332,7 +332,7 @@ Return course by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
     
 + Response 200 (application/json)
     + Attributes (course)
@@ -354,7 +354,7 @@ To return all courses for a bundle database purpose we will send `lastSyncTimest
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -376,7 +376,7 @@ Return race by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (race)
@@ -392,7 +392,7 @@ Return all races
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -413,7 +413,7 @@ Return horse by identifier
 
     + Headers
 
-            Token: "12308A08Q2349UNSDAF78q234-34a"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (horse)
@@ -429,7 +429,7 @@ Return all horses
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -450,7 +450,7 @@ Return jockey by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (jockey)
@@ -466,7 +466,7 @@ Return all jockeys
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -487,7 +487,7 @@ Return owner by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (owner)
@@ -503,7 +503,7 @@ Return all owners
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -524,7 +524,7 @@ Return trainer by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (trainer)
@@ -540,7 +540,7 @@ Return all trainers
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes
@@ -561,7 +561,7 @@ Return wpredictor by identifier
 
     + Headers
 
-            Token: "Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s"
+            Token: `Fh1I5djzKSGyGGgy0m9fxog2wwiyElwKKF3-l_Wh8-s`
 
 + Response 200 (application/json)
     + Attributes (wpredictor)
@@ -600,8 +600,8 @@ Return wpredictor by identifier
 ## bet (object)
 + betId: 147483647 (number, required) - ID of the bet in the form of an long
 + guineas: 12 (number, required) - Number of guineas to bet in the form of an long
-+ createdAt: `2015-11-30T09:35:10.652Z` (string, required)
-+ updatedAt: `2015-11-30T09:35:10.652Z` (string, required)
++ createdAt: `2015-11-30T09:35:10.652Z` (string, required) - server created date
++ updatedAt: `2015-11-30T09:35:10.652Z` (string, required) - server updated date
 + raceId: 147483647 (number, required) - ID of the race in the form of an long
 + horseId: 147483647 (number, required) - ID of the horse in the form of an long
 + userId: 147483647 (number, required) - ID of the user in the form of an long
@@ -634,7 +634,7 @@ Return wpredictor by identifier
 + racedAt: `2015-11-30T09:35:10.652Z` (string, required)
 + raceId: 147483647 (number, required) - ID of the race in the form of an long (RaceNumber)
 + raceName: `THE HAYGAIN HAY STEAMERS CLEAN HEALTHY HAY MARES' HANDICAP HURDLE RACE (CLASS 5)` (string, required)
-+ raceType: J (string, required) - Race type: Jump, Flat, etc
++ raceType: `J` (string, required) - Race type: Jump, Flat, etc
 + value: 5000.00 (number, required) - Race value in the form of a float
 + raceDescription: `race description` (string) - Comes from the CMS
 + raceImageUrl: http://www.url.co.uk/sponsor.jpg (string, required) - Comes from the CMS
@@ -654,7 +654,7 @@ Return wpredictor by identifier
 + trainer (trainer)
 + wearing (object)
     + Cheekpieces: true (boolean)
-    + General: null (string)
+    + General: `z` (string)
 + weight: 166 (number)
 
 ## trainer (object)
